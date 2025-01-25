@@ -15,7 +15,7 @@ async function getProjectsData() {
   "imageUrl": image.asset->url
 } | order(order desc)`;
 
-  const projects = await client.fetch(query);
+  const projects = await client.fetch(query, {}, {next: {revalidate: 3600}});
   return projects;
 }
 
